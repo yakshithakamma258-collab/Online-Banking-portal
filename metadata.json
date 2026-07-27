@@ -1,6 +1,0 @@
-{
-  "name": "Vitap Private Bank Portal",
-  "description": "An ultra-premium private banking and core transaction portal, styled with deep slate and custom dark teal tones for high-net-worth sovereign clients.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
