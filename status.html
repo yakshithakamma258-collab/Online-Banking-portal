@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transfer Status - VITAP Digital Bank</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="bank-header">
+    <div class="container nav-container">
+      <a href="#" class="brand">
+        <div class="brand-logo">A</div>
+        <span class="brand-name">VITAP DIGITAL BANK</span>
+      </a>
+
+      <!-- Menu links -->
+      <ul class="nav-menu">
+        <li><a href="beneficiary.html" class="nav-link">Beneficiaries</a></li>
+        <li><a href="transfer.html" class="nav-link">Transfer Funds</a></li>
+        <li><a href="status.html" class="nav-link active">Transfer Status</a></li>
+      </ul>
+
+      <!-- User badge info -->
+      <div class="user-badge">
+        <div class="user-avatar">Y</div>
+        <div style="text-align: left; font-size: 13px;">
+          <div style="font-weight: 700; color: var(--dark);">Yakshitha</div>
+          <div style="color: var(--text-muted); font-size: 11px;">yakshitha@vitapbank.com</div>
+        </div>
+        <a href="login.html" class="logout-btn" style="margin-left: 12px; text-decoration: none;">
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Status layout workspace -->
+  <main class="main-layout">
+    <div class="container">
+      
+      <div class="status-card card">
+        
+        <!-- Status Header icon -->
+        <div class="status-icon-wrapper status-success-icon">
+          <!-- Big checkmark svg -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+
+        <h2 style="font-size: 24px; color: var(--dark);">Transaction Settled</h2>
+        <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Reference ID: APX-9908128473</p>
+
+        <!-- Progress step visualizer -->
+        <div class="progress-steps">
+          
+          <div class="progress-line"></div>
+          <!-- 100% active line -->
+          <div class="progress-line-active" style="width: 100%;"></div>
+
+          <!-- Step 1 -->
+          <div class="progress-step completed">
+            <div class="step-circle">✓</div>
+            <span class="step-label">Handshake</span>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="progress-step completed">
+            <div class="step-circle">✓</div>
+            <span class="step-label">Validation</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="progress-step completed">
+            <div class="step-circle">✓</div>
+            <span class="step-label">Clearing</span>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="progress-step completed">
+            <div class="step-circle">✓</div>
+            <span class="step-label">Settled</span>
+          </div>
+
+        </div>
+
+        <!-- Receipt Details Box -->
+        <div class="receipt-box">
+          <h3 style="font-size: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+            Transfer Receipt
+          </h3>
+
+          <div class="receipt-grid">
+            
+            <div class="receipt-item">
+              <span class="receipt-label">Target Recipient</span>
+              <p class="receipt-val" id="dispBene">Sarah Jenkins</p>
+            </div>
+
+            <div class="receipt-item">
+              <span class="receipt-label">Destination Bank</span>
+              <p class="receipt-val" id="dispBank">Chase Bank</p>
+            </div>
+
+            <div class="receipt-item">
+              <span class="receipt-label">Destination Account</span>
+              <p class="receipt-val" id="dispAcc" style="font-family: monospace;">CHASE-8812-4491</p>
+            </div>
+
+            <div class="receipt-item">
+              <span class="receipt-label">Source Debit</span>
+              <p class="receipt-val" id="dispSource">Checking Account</p>
+            </div>
+
+            <div class="receipt-item">
+              <span class="receipt-label">Settlement Protocol</span>
+              <p class="receipt-val" id="dispProtocol">IMPS (Immediate Transfer)</p>
+            </div>
+
+            <div class="receipt-item">
+              <span class="receipt-label">Timestamp</span>
+              <p class="receipt-val" style="font-family: monospace;">2026-07-23 10:43</p>
+            </div>
+
+            <div class="receipt-item full-width" style="background-color: var(--primary-light); padding: 12px; border-radius: var(--radius-sm); border: 1px solid rgba(37, 99, 235, 0.1); display: flex; justify-content: space-between; align-items: center; border-bottom: none;">
+              <span class="receipt-label" style="color: var(--primary); font-weight: bold; font-size: 12px;">Total Debited</span>
+              <span class="receipt-val" id="dispAmount" style="font-family: monospace; font-size: 18px; color: var(--primary); font-weight: 800; margin-top: 0;">₹1,200.00</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Utility Navigation Buttons -->
+        <div style="display: flex; gap: 16px; justify-content: center;">
+          <a href="transfer.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;">
+            New funds transfer
+          </a>
+          <a href="beneficiary.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 13px;">
+            Go to Directory
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- URL Parameter parsing script to make the status receipt fully dynamic and interactive! -->
+  <script>
+    // Extract parameters from URL query string
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Set dynamic values based on query string or defaults
+    if (urlParams.has('sourceAccount')) {
+      document.getElementById('dispSource').innerText = urlParams.get('sourceAccount') + ' Account';
+    }
+    
+    if (urlParams.has('beneficiary')) {
+      const bene = urlParams.get('beneficiary');
+      if (bene === 'david') {
+        document.getElementById('dispBene').innerText = 'David Miller';
+        document.getElementById('dispBank').innerText = 'Bank of America';
+        document.getElementById('dispAcc').innerText = 'BOFA-0912-7711';
+      } else if (bene === 'robert') {
+        document.getElementById('dispBene').innerText = 'Robert Chen';
+        document.getElementById('dispBank').innerText = 'Wells Fargo';
+        document.getElementById('dispAcc').innerText = 'WF-5521-8890';
+      } else {
+        document.getElementById('dispBene').innerText = 'Sarah Jenkins';
+        document.getElementById('dispBank').innerText = 'Chase Bank';
+        document.getElementById('dispAcc').innerText = 'CHASE-8812-4491';
+      }
+    }
+    
+    if (urlParams.has('amount')) {
+      const amt = parseFloat(urlParams.get('amount'));
+      if (!isNaN(amt)) {
+        document.getElementById('dispAmount').innerText = '₹' + amt.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+      }
+    }
+    
+    if (urlParams.has('type')) {
+      const protocol = urlParams.get('type');
+      document.getElementById('dispProtocol').innerText = protocol + ' (Retail Transfer)';
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="bank-footer">
+    <div class="container">
+      <p>© 2026 VITAP Digital Bank. All rights reserved. SECURE Retail Member.</p>
+      <div class="bank-footer-links">
+        <a href="#">Privacy Policy</a>
+        <span>•</span>
+        <a href="#">Terms of Service</a>
+        <span>•</span>
+        <a href="#">Security Information</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
